@@ -20,7 +20,7 @@ window.onload = function() {
 // get OpenWeather API JSON
 function gettingJSON(lat, lon){
 		document.write("jquery loaded");
-		$.getJSON("https://api.openweathermap.org/data/2.5/forecast?forecast?lat=" + lat + "&lon=" + lon + "&APPID=d78f5363c58b1e99ac14e3786c1b25ae",function(json){
+		$.getJSON("https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast?forecast?lat=" + lat + "&lon=" + lon + "&APPID=d78f5363c58b1e99ac14e3786c1b25ae",function(json){
 				document.write(JSON.stringify(json));
 				showForecast();
 		});
