@@ -6,8 +6,10 @@ window.onload = function() {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			var lat = position.coords.latitude;
 			var lon = position.coords.longitude;
-
-			// Show the map
+			console.log('latitude: ' + lat);
+			console.log('longitude: ' + lon);
+			
+			// Show the JSON
 			gettingJSON(lat, lon);
 		});
 	} else {
@@ -19,7 +21,7 @@ window.onload = function() {
 
 // get OpenWeather API JSON
 function gettingJSON(lat, lon){
-		document.write("jquery loaded");
+		// document.write("jquery loaded");
 		$.getJSON("https://api.darksky.net/forecast/09ffec8ffd7df43c9e4ec34117d734f7/" + lat + "," + lon,function(json){
 				document.write(JSON.stringify(json));
 				showForecast();
