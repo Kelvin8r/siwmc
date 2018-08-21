@@ -19,20 +19,24 @@
 //
 // }
 
+var jsonData;
+
 // get OpenWeather API JSON
 function gettingJSON(zip){
-		// document.write("jquery loaded");
-		var x = document.getElementById("zipvalue");
+	// document.write("jquery loaded");
+	var x = document.getElementById("zipvalue");
     var zip = "";
     zip += x.value;
-		console.log('zip entered: ' + zip);
-		$.getJSON("api.openweathermap.org/data/2.5/weather?zip=" + zip + "&appid=d78f5363c58b1e99ac14e3786c1b25ae",function(json){
-				document.write(JSON.stringify(json));
-				showForecast();
-		});
+	console.log('zip entered: ' + zip);
+	$.getJSON("https://api.openweathermap.org/data/2.5/forecast?appid=d78f5363c58b1e99ac14e3786c1b25ae&zip=" + zip, function(json){
+		// document.write(JSON.stringify(json));
+		jsonData = JSON.stringify(json);
+		showForecast();
+	});
 }
 
 // Show forecast
 function showForecast() {
 	console.log("Forecast coming up.");
+	$('#jsondata').text(jsonData);
 };
