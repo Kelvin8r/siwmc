@@ -6,11 +6,15 @@
   <script src="script.js"></script>
 </head>
 <body>
+<button id="geoLocBtn">Use My Location</button>
 <form id="zipform">
-  Zip: <input type="text" name="zipcode" id="zipvalue">
-  <button id = "getIt" onclick = "gettingJSON()">Get JSON</button>
+  <input type="text" name="zipcode" id="zipvalue">
+  <button id = "zipBtn" onclick = "gettingJSON()">Use Zip</button>
 </form>
+<button id="clearBtn">Clear JSON</button>
+<h1>JSON Data</h1>
 <div id="jsondata">
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBS13n8lINwJz1DiqB8X0-8-6hqo6hvaB0" async defer></script>
 </body>
 </html>
