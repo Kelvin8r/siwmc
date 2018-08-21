@@ -22,7 +22,7 @@
 var jsonData;
 
 // get OpenWeather API JSON
-function gettingJSON(zip){
+function gettingJSON(){
 	// document.write("jquery loaded");
 	var x = document.getElementById("zipvalue");
     var zip = "";
