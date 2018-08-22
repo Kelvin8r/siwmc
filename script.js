@@ -63,13 +63,12 @@ window.onload = function() {
 		var address = zipcode;
 		geocoder.geocode({ 'address': address }, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
-				var latitude = results[0].geometry.location.lat();
-				var longitude = results[0].geometry.location.lng();
-				// alert("Latitude: " + latitude + "\nLongitude: " + longitude);
+				lat = results[0].geometry.location.lat();
+				lon = results[0].geometry.location.lng();
 			} else {
 				alert("Request failed.")
 			}
 		});
-		return [latitude, longitude];
+		return [lat, lon];
 	}
 }
