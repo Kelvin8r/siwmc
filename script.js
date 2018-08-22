@@ -7,7 +7,7 @@ window.onload = function() {
 	$("#clearBtn").on('click', function (event) {
 		event.preventDefault();
 		$('#jsondata').text('');
-		console.log('zip entered: ' + zip);
+		console.log('JSON cleared');
 	});
 
 	// zip form button
