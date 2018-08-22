@@ -68,7 +68,7 @@ window.onload = function() {
 				console.log('longitude: ' + lon);
 
 				// Show the JSON
-				gettingJSON(coor[0], coor[1]);
+				gettingJSON(lat, lon);
 			} else {
 				alert("Request failed.")
 			}
