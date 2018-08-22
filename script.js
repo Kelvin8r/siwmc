@@ -15,8 +15,7 @@ window.onload = function() {
 		event.preventDefault();
 		var zip = $('#zipvalue').val();
 		console.log('zip entered: ' + zip);
-		var coor = getLatLngByZipcode(zip);
-		gettingJSON(coor[0], coor[1]);
+		getLatLngByZipcode(zip);
 	});
 
 	// geolocation button
@@ -65,10 +64,14 @@ window.onload = function() {
 			if (status == google.maps.GeocoderStatus.OK) {
 				lat = results[0].geometry.location.lat();
 				lon = results[0].geometry.location.lng();
+				console.log('latitude: ' + lat);
+				console.log('longitude: ' + lon);
+
+				// Show the JSON
+				gettingJSON(coor[0], coor[1]);
 			} else {
 				alert("Request failed.")
 			}
 		});
-		return [lat, lon];
 	}
 }
