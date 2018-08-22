@@ -65,7 +65,7 @@ window.onload = function() {
 			if (status == google.maps.GeocoderStatus.OK) {
 				var latitude = results[0].geometry.location.lat();
 				var longitude = results[0].geometry.location.lng();
-				alert("Latitude: " + latitude + "\nLongitude: " + longitude);
+				// alert("Latitude: " + latitude + "\nLongitude: " + longitude);
 			} else {
 				alert("Request failed.")
 			}
