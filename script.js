@@ -1,7 +1,7 @@
 window.onload = function() {
 
 	// global variables
-	var lat, lon, jsonData;
+	var lat, lon, jsonData, jsonRawData;
 
 	// clear button
 	$("#clearBtn").on('click', function (event) {
@@ -13,7 +13,7 @@ window.onload = function() {
 	// zip form button
 	$("#zipform").submit(function (event) {
 		event.preventDefault();
-		var zip = $('#zipvalue').val();
+		const zip = $('#zipvalue').val();
 		console.log('zip entered: ' + zip);
 		getLatLngByZipcode(zip);
 	});
@@ -40,26 +40,28 @@ window.onload = function() {
 		}
 	});
 
-	// get OpenWeather API JSON using latitude and longitude
+	// OpenWeather API JSON using latitude and longitude
 	function gettingJSON(lat, lon) {
 		// document.write("jquery loaded");
 		$.getJSON("https://api.openweathermap.org/data/2.5/forecast?appid=d78f5363c58b1e99ac14e3786c1b25ae&lat=" + lat + "&lon=" + lon, function (json) {
 			// document.write(JSON.stringify(json));
+			jsonRawData = json;
 			jsonData = JSON.stringify(json);
 			showForecast();
 		});
 	}
 
-	// Show forecast
+	// show forecast
 	function showForecast() {
 		console.log("Forecast coming up.");
-		$('#jsondata').text(jsonData);
+		// $('#jsondata').text(jsonData);
+		extractDisplayData(jsonRawData);
 	};
 
-	// Get geo coordinates from zip code
+	// geo coordinates from zip code
 	function getLatLngByZipcode(zipcode) {
-		var geocoder = new google.maps.Geocoder();
-		var address = zipcode;
+		const geocoder = new google.maps.Geocoder();
+		const address = zipcode;
 		geocoder.geocode({ 'address': address }, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				lat = results[0].geometry.location.lat();
@@ -73,5 +75,28 @@ window.onload = function() {
 				alert("Request failed.")
 			}
 		});
+	}
+
+	// extract weather data
+	function extractDisplayData(weatherData) {
+		let content = '';
+		const weatherList = weatherData.list;
+		for (let i = 0; i < weatherList.length; i++) {
+			if (i && (i % 3 === 0)) {
+				const element = weatherList[i];
+				const weatherCondition = element.weather[0].description;
+				const weatherIcon = element.weather[0].icon;
+				const weatherDate = element.dt.toDateString();
+				console.log("Date: " + weatherDate);
+				console.log("Condition: " + weatherCondition);
+				console.log("Icon code: " + weatherIcon);
+				content += "<p>";
+				content += weatherDate + "<br>";
+				content += weatherCondition + "<br>";
+				content += "<img src='//openweathermap.org/img/w/" + weatherIcon + ".png'>";
+				content += "</p>"
+			}
+		}
+		$('#jsondata').html(content);
 	}
 }
