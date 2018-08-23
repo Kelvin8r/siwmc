@@ -86,7 +86,8 @@ window.onload = function() {
 				const element = weatherList[i];
 				const weatherCondition = element.weather[0].description;
 				const weatherIcon = element.weather[0].icon;
-				const weatherDate = element.dt.toDateString();
+				let currentDate = new Date(element.dt);
+				const weatherDate = currentDate.toDateString();
 				console.log("Date: " + weatherDate);
 				console.log("Condition: " + weatherCondition);
 				console.log("Icon code: " + weatherIcon);
