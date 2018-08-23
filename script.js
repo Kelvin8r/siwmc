@@ -82,11 +82,11 @@ window.onload = function() {
 		let content = '';
 		const weatherList = weatherData.list;
 		for (let i = 0; i < weatherList.length; i++) {
-			if (i && (i % 3 === 0)) {
+			if (i && (i % 8 === 0)) {
 				const element = weatherList[i];
 				const weatherCondition = element.weather[0].description;
 				const weatherIcon = element.weather[0].icon;
-				let currentDate = new Date(element.dt);
+				let currentDate = new Date(element.dt_txt);
 				const weatherDate = currentDate.toDateString();
 				console.log("Date: " + weatherDate);
 				console.log("Condition: " + weatherCondition);
