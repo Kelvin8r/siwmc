@@ -82,7 +82,7 @@ window.onload = function() {
 		let content = '';
 		const weatherList = weatherData.list;
 		for (let i = 0; i < weatherList.length; i++) {
-			if (i && (i % 8 === 0)) {
+			if (i % 8 === 0) {
 				const element = weatherList[i];
 				const weatherCondition = element.weather[0].description;
 				const weatherIcon = element.weather[0].icon;
@@ -92,6 +92,7 @@ window.onload = function() {
 				console.log("Condition: " + weatherCondition);
 				console.log("Icon code: " + weatherIcon);
 				content += "<p>";
+				content += "index: " + i + "<br>";
 				content += weatherDate + "<br>";
 				content += weatherCondition + "<br>";
 				content += "<img src='//openweathermap.org/img/w/" + weatherIcon + ".png'>";
